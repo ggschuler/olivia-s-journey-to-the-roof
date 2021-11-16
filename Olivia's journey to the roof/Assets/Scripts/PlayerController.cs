@@ -35,7 +35,10 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
         Fall();
+        
     }
+
+    
 
     private void Walk(Vector2 dir)
     {
