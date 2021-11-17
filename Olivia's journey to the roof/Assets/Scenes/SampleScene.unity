@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 179267976}
   - component: {fileID: 179267975}
   - component: {fileID: 179267974}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SideR
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 201597507}
   - component: {fileID: 201597508}
   m_Layer: 0
-  m_Name: CursorPointer
+  m_Name: Cursor Aim Pointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 746554301}
   - component: {fileID: 746554300}
   m_Layer: 0
-  m_Name: Playable
+  m_Name: Characters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -426,6 +426,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b3eb2721d680443ad7b0e8b961b395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delayTime: 0.5
+  whichIsActive: 0
 --- !u!4 &746554301
 Transform:
   m_ObjectHideFlags: 0
@@ -453,7 +455,7 @@ GameObject:
   - component: {fileID: 871654410}
   - component: {fileID: 871654409}
   - component: {fileID: 871654408}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlatformL
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -562,7 +564,7 @@ GameObject:
   - component: {fileID: 1003653927}
   - component: {fileID: 1003653926}
   - component: {fileID: 1003653925}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Roof
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -671,7 +673,7 @@ GameObject:
   - component: {fileID: 1055584612}
   - component: {fileID: 1055584611}
   - component: {fileID: 1055584610}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlatformR
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -780,7 +782,7 @@ GameObject:
   - component: {fileID: 1107508179}
   - component: {fileID: 1107508181}
   m_Layer: 0
-  m_Name: PlayerCenter
+  m_Name: Cursor Pivot Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -824,7 +826,7 @@ GameObject:
   - component: {fileID: 1228192222}
   - component: {fileID: 1228192221}
   - component: {fileID: 1228192220}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SideL
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -1066,10 +1068,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593d1fd8da5a5c84bb754d0870800f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 8
-  _fallMultiplier: 4
-  _lowJumpMultiplier: 2
-  _jumpForce: 8
+  speed: 8
+  fallMultiplier: 4
+  lowJumptMultiplier: 2
+  jumpForce: 8
 --- !u!1 &1639321700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,7 +1083,7 @@ GameObject:
   - component: {fileID: 1639321703}
   - component: {fileID: 1639321702}
   - component: {fileID: 1639321701}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FloorR
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -1192,15 +1194,17 @@ GameObject:
   - component: {fileID: 1755732760}
   - component: {fileID: 1755732763}
   - component: {fileID: 1755732764}
+  - component: {fileID: 1755732765}
+  - component: {fileID: 1755732766}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!70 &1755732760
-CapsuleCollider2D:
+--- !u!61 &1755732760
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1212,9 +1216,19 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1}
-  m_Direction: 0
+  m_Offset: {x: 0.0019202381, y: -0.06479907}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.89459157, y: 0.8847953}
+  m_EdgeRadius: 0
 --- !u!212 &1755732761
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1255,12 +1269,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 84ece7a2d97b27b4792f4b1846b29737, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1314,10 +1328,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593d1fd8da5a5c84bb754d0870800f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 8
-  _fallMultiplier: 4
-  _lowJumpMultiplier: 2
-  _jumpForce: 8
+  speed: 8
+  fallMultiplier: 4
+  lowJumptMultiplier: 2
+  jumpForce: 8
+--- !u!95 &1755732765
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755732759}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5cbd0a76d9ef9ed4d84a67a10e269450, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1755732766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755732759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d1eafe88fcff414283706ee4eacca80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1841941903
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,7 +1374,7 @@ GameObject:
   - component: {fileID: 1841941906}
   - component: {fileID: 1841941905}
   - component: {fileID: 1841941904}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FloorL
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -1421,7 +1466,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1841941903}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.251446, y: -4.9482594, z: 4.184618}
+  m_LocalPosition: {x: -6.22, y: -5.56, z: 4.184618}
   m_LocalScale: {x: 14.524242, y: 0.7625, z: 1}
   m_Children: []
   m_Father: {fileID: 2094265020}
@@ -1436,9 +1481,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2094265020}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Level
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

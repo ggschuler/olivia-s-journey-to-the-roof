@@ -4,42 +4,51 @@ using UnityEngine;
 
 public class CursorController : MonoBehaviour
 {
-    private Camera camera;
+    private Camera mainCamera;
     private PlayableSwitch switcher;
+    private GameObject cursorAimPointer;
+    private int offsetRotation = 90; 
 
     // Start is called before the first frame update
     void Start()
     {
-        camera = Camera.main;
-        switcher = GameObject.Find("Playable").GetComponent<PlayableSwitch>();
+        mainCamera = Camera.main;
+        switcher = GameObject.Find("Characters").GetComponent<PlayableSwitch>(); // get empty parent 'Characters', whose children is the player objects.
+        cursorAimPointer = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Mouse();
+        CursorAim();
     }
 
-    private void Mouse()
+    private void CursorAim()
     {
-        Vector3 mouse = Input.mousePosition;
-        Vector3 offset = camera.ScreenToWorldPoint(mouse);
-        
+        Vector2 mouse = Input.mousePosition;
+        Vector3 offset = mainCamera.ScreenToWorldPoint(mouse);
+
         float rotZ = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotZ - 90);
+        transform.rotation = Quaternion.Euler(0f, 0f, rotZ - offsetRotation); // adjusts pivot point rotation depending on mouse position.
+
         if (Input.GetButtonDown("Fire1"))
         {
-            RaycastHit2D infoHit = Physics2D.Raycast(transform.GetChild(0).position,transform.GetChild(0).up);
-            Debug.DrawRay(transform.GetChild(0).position, transform.GetChild(0).up + offset, Color.blue,1f);
-            Debug.Log("Fire!");
-            if (infoHit.transform.CompareTag("Player"))
-            {
-                Debug.Log("Player hit!");
-                switcher.SwitchPlayer();
-                Debug.Log("Sucessful");
-            }
+            Fire(offset);
         }
     }
 
-    
+    private void Fire(Vector3 offset)
+    {
+        RaycastHit2D aimHitInfo = Physics2D.Raycast(cursorAimPointer.transform.position, cursorAimPointer.transform.up);
+
+        Debug.DrawRay(cursorAimPointer.transform.position, cursorAimPointer.transform.up + offset, Color.blue, 1f);
+
+        if (aimHitInfo.transform.CompareTag("Player"))
+        {
+            Debug.Log("Player hit!");
+            switcher.WhichIsActive();
+            Debug.Log("Sucessful");
+        }
+    }
+
 }
