@@ -1,16 +1,25 @@
 fileFormatVersion: 2
-guid: a3be7d6407f2e264d94d4ac3c16e2b5a
+guid: 6dcae227e71b23943a4c47fbb323e0a0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -175728439933376269
-    second: Olivia_sitpxo_0
+      213: -571069377898194155
+    second: Olivia_jumping_0
   - first:
-      213: 4145543289913672050
-    second: Olivia_sitpxo_1
+      213: -2664000629932802604
+    second: Olivia_jumping_1
   - first:
-      213: 3592364768767508161
-    second: Olivia_sitpxo_2
+      213: 1960597686372094312
+    second: Olivia_jumping_2
+  - first:
+      213: 9103618988439888239
+    second: Olivia_jumping_3
+  - first:
+      213: 1290030866851447290
+    second: Olivia_jumping_4
+  - first:
+      213: -6027204029586610069
+    second: Olivia_jumping_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -112,7 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Olivia_sitpxo_0
+      name: Olivia_jumping_0
       rect:
         serializedVersion: 2
         x: 0
@@ -126,14 +135,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f866d83aefaf8df0800000000000000
-      internalID: -175728439933376269
+      spriteID: 51b564c2d672318f0800000000000000
+      internalID: -571069377898194155
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Olivia_sitpxo_1
+      name: Olivia_jumping_1
       rect:
         serializedVersion: 2
         x: 16
@@ -147,14 +156,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2710f4c78ade78930800000000000000
-      internalID: 4145543289913672050
+      spriteID: 4dd3073aa81970bd0800000000000000
+      internalID: -2664000629932802604
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Olivia_sitpxo_2
+      name: Olivia_jumping_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86159a34531753b10800000000000000
+      internalID: 1960597686372094312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Olivia_jumping_3
       rect:
         serializedVersion: 2
         x: 0
@@ -168,8 +198,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cef30a59b4aad130800000000000000
-      internalID: 3592364768767508161
+      spriteID: f61e578ac3d865e70800000000000000
+      internalID: 9103618988439888239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Olivia_jumping_4
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af148ff0d3c17e110800000000000000
+      internalID: 1290030866851447290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Olivia_jumping_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b68efab5ed11b5ca0800000000000000
+      internalID: -6027204029586610069
       vertices: []
       indices: 
       edges: []
