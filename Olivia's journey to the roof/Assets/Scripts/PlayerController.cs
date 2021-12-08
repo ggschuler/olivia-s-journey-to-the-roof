@@ -10,7 +10,12 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private LayerMask unJumpable;
     private float extraHeight = .1f;
+    private float extraLength = .5f;
+    private bool wallJumpEnabled = false;
     private float idleTimer;
+
+    private float coyoteTime = 0.2f;
+    private float coyoteTimeCounter;
 
     [SerializeField] float speed = 8f;
     [SerializeField] float fallMultiplier = 4f;
@@ -33,14 +38,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // WALKS:
         float x     = Input.GetAxis("Horizontal");
         float y     = Input.GetAxis("Vertical");
         Vector2 dir = new Vector2(x, y);
         Walk(dir);
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+
+        //JUMPS:
+
+        if (IsGrounded()) { coyoteTimeCounter = coyoteTime; }
+        else { coyoteTimeCounter -= Time.deltaTime; }
+        if ((Input.GetButtonDown("Jump") && coyoteTimeCounter > 0f) || (Input.GetButtonDown("Jump") && wallJumpEnabled))
         {
             animator.SetTrigger("timeToJump");
             Jump();
+            coyoteTimeCounter = 0f;
         }
         Fall();
         OnLanding();
@@ -55,27 +67,39 @@ public class PlayerController : MonoBehaviour
         if (rb.velocity.x < 0 )
         {
             sr.flipX = true;
+            if (CheckWalls(-1) && rb.velocity.x != 0)
+            {
+                Debug.Log("in");
+                wallJumpEnabled = true;
+                //animator
+            }
         }
         else if (rb.velocity.x > 0)
         {
             sr.flipX = false;
+            if (CheckWalls(1) && rb.velocity.x != 0)
+            {
+                Debug.Log("in");
+                wallJumpEnabled = true;
+                //animator
+            }
+
         }
         characterScale = transform.localScale;
     }
 
 
-    private void Jump() // set jump force onto player. Falsifies 'isGrounded'.
+    private void Jump() // set jump force onto player.
     {
-        
         rb.velocity  = new Vector2(rb.velocity.x, 0);
         rb.velocity += Vector2.up * jumpForce;
+        wallJumpEnabled = false;
     }
 
     private void Fall() // increases falling speed depending on player input and current velocity.
     {
-        if (rb.velocity.y < 0)
+        if (rb.velocity.y < -1)
         {
-            Debug.Log("Fall!");
             animator.SetTrigger("isFalling");
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
@@ -99,7 +123,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    private bool CheckWalls(int flip)
+    {
+        RaycastHit2D wallCastInfo = Physics2D.Raycast(bc2d.bounds.center, new Vector2(flip, 0), extraLength, unJumpable);
+        Debug.DrawRay(bc2d.bounds.center, new Vector2(flip, 0), Color.blue);
+        Debug.Log(wallCastInfo.collider != null);
+        return wallCastInfo.collider != null;
+        
+    }
 
     private void RunStateMachine()
     {
